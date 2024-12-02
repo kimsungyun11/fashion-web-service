@@ -82,7 +82,8 @@ tasks.named('test') {
 
 // 새로 추가된 설정
 bootJar {
-    archiveClassifier.set('')
+    archiveBaseName.set('FashionNav')
+    archiveFileName.set("${archiveBaseName.get()}.jar")
 }
 
 jar {
