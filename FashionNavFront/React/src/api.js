@@ -57,8 +57,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    // baseURL: "http://localhost:8080/api",
-    baseURL: "https://port-0-fashion-web-service-lydr4cy5f698c981.sel5.cloudtype.app/api",
+    baseURL: "https://port-0-fashion-web-service-m45lcyj12bc02bb6.sel4.cloudtype.app/api",
     headers: {
         "Content-Type": "application/json",
     },
@@ -87,10 +86,10 @@ api.interceptors.response.use(
                 if (!refreshToken) {
                     throw new Error("No refresh token found");
                 }
-                const response = await axios.post("https://port-0-fashion-web-service-lydr4cy5f698c981.sel5.cloudtype.app/api", null, {
+                const response = await axios.post("https://port-0-fashion-web-service-m45lcyj12bc02bb6.sel4.cloudtype.app/api/users/refresh", null, {
                     headers: { Authorization: `Bearer ${refreshToken}` },
                 });
-                const newAccessToken = response.data.accessToken;
+                const newAccessToken = response.data.accessToken; // 백엔드 응답 구조에 따라 이 부분을 수정할 수 있습니다
                 localStorage.setItem("token", newAccessToken);
                 originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
                 return api(originalRequest);
